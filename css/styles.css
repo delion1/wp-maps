@@ -19,3 +19,11 @@ ul.cat-menu li a{
 ul.cat-menu li a::after{
   content:'+';
 }
+#locations .row a{
+  display:block;
+  width:100%;
+}
+#locations .row span{
+  display:block;
+  width:100%;
+}
