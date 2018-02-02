@@ -28,13 +28,14 @@
         var id = items[0]['id'];
 
         console.log(items);
+        console.log(address);
 
         if(addy['map'] == ''){
           var lat2 = '',
           lng2 = '';
 
-          lat2 = 41.8854497,
-          lat2 = -87.62603000000001
+          lat2 = parseFloat(41.8854497),
+          lng2 = parseFloat(-87.62603000000001)
         } else{
           lat2 = parseFloat(lat1.replace(/\"/g, ""));
           lng2 = parseFloat(lng1.replace(/\"/g, ""));
@@ -79,8 +80,9 @@
       });
     }).fail(function() {
       console.log( "error" );
-      $('#loactions').append('<div class="alert alert-danger">There was an error with your request</div>');
+      $('#locations').append('<div class="alert alert-danger">There was an error with your request</div>');
     });
+
     var container = $('#locations');
     jQuery('.cat-menu li a').on( 'click', function() {
       //console.log('this');
