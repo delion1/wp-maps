@@ -7,11 +7,21 @@
       });
     //}
 
-    $.getJSON("https://clarity2018.wpengine.com/wp-json/wp/v2/places", function(places){
-      console.log('loading');
 
-    }).done(function(places){
-      console.log('done');
+
+    $.ajax({
+      url: "https://clarity2018.wpengine.com/wp-json/wp/v2/places",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      type: "GET",
+      dataType: 'json',
+
+      data:{
+        //format:'json'
+      },
+      success:function(places){
+        console.log('done');
       var markers = new Array();
       var infoWindow = new google.maps.InfoWindow();
 
@@ -78,9 +88,11 @@
           google.maps.event.trigger(markers[$(this).attr('data-markerid')], 'click');
         });
       });
-    }).fail(function() {
-      console.log( "error" );
-      $('#locations').append('<div class="alert alert-danger">There was an error with your request</div>');
+      },
+      error:function(){
+        console.log( "error" );
+        $('#locations').append('<div class="alert alert-danger">There was an error with your request</div>');
+      }
     });
 
     var container = $('#locations');
