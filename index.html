@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKlHRkukEmX16bl5beqxHc3YdrWNfKjDw"></script>
+  <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+  <script src="js/isotope.pkgd.min.js"></script>
+  <script src="js/neighborhood.js"></script>
+  <title>The Neighborhood</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col" id="list">
+          <h1>The Neighborhood</h1>
+
+          <div class="">
+            <ul class="cat-menu">
+              <li class="col-5"><a class="button" data-filter=".19">Happy Hour</a></li>
+              <li class="col-5"><a class="button" data-filter=".20">Hang Outs</a></li>
+              <li class="col-5"><a class="button" data-filter=".18">Lunch Spots</a></li>
+              <li class="col-5"><a class="button" data-filter=".21">Events</a></li>
+            </ul>
+          </div>
+          <div id="locations"></div>
+      </div>
+      <div class="col" id="map">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
