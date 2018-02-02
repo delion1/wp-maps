@@ -9,6 +9,9 @@
 
     $.getJSON("https://clarity2018.wpengine.com/wp-json/wp/v2/places", function(places){
       console.log('loading');
+
+    }).done(function(places){
+      console.log('done');
       var markers = new Array();
       var infoWindow = new google.maps.InfoWindow();
 
@@ -25,8 +28,17 @@
         var id = items[0]['id'];
 
         console.log(items);
-        lat2 = parseFloat(lat1.replace(/\"/g, ""));
-        lng2 = parseFloat(lng1.replace(/\"/g, ""));
+
+        if(addy['map'] == ''){
+          var lat2 = '',
+          lng2 = '';
+
+          lat2 = 41.8854497,
+          lat2 = -87.62603000000001
+        } else{
+          lat2 = parseFloat(lat1.replace(/\"/g, ""));
+          lng2 = parseFloat(lng1.replace(/\"/g, ""));
+        }
 
         //var infowindow = new google.maps.InfoWindow({
 
@@ -65,11 +77,9 @@
           google.maps.event.trigger(markers[$(this).attr('data-markerid')], 'click');
         });
       });
-
-    }).done(function(){
-      console.log('done');
     }).fail(function() {
       console.log( "error" );
+      $('#loactions').append('<div class="alert alert-danger">There was an error with your request</div>');
     });
     var container = $('#locations');
     jQuery('.cat-menu li a').on( 'click', function() {
