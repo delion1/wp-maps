@@ -8,6 +8,7 @@
     //}
 
     $.getJSON("https://clarity2018.wpengine.com/wp-json/wp/v2/places", function(places){
+      console.log('loading');
       var markers = new Array();
       var infoWindow = new google.maps.InfoWindow();
 
