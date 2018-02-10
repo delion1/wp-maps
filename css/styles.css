@@ -17,10 +17,17 @@ ul.cat-menu li a{
   cursor: pointer;
 }
 ul.cat-menu li a::after{
+  float:right;
   content:'+';
+}
+ul.cat-menu li a.is-checked::after{
+  content:'x';
 }
 #locations .row a{
   display:block;
+  width:100%;
+}
+#locations .row.list{
   width:100%;
 }
 #locations .row span{

@@ -95,15 +95,37 @@
       }
     });
 
-    var container = $('#locations');
-    jQuery('.cat-menu li a').on( 'click', function() {
-      //console.log('this');
-      var filterValue = jQuery( this ).attr('data-filter');
-      // use filterFn if matches value
-      console.log(filterValue);
-      //filterValue = filterFns[ filterValue ] || filterValue;
-      container.isotope({ filter: filterValue });
-      //container.on('filterComplete', onArrange);
 
+    //filtering
+    var container = $('#locations');
+    var filters = []
+    jQuery('.cat-menu li a').on( 'click', function(event) {
+
+      var $target = $( event.currentTarget );
+      $target.toggleClass('is-checked');
+      var isChecked = $target.hasClass('is-checked');
+      var filterValue = $target.attr('data-filter');
+
+      if ( isChecked ) {
+        addFilter( filterValue );
+      } else {
+        removeFilter( filterValue );
+      }
+      // filter isotope
+      // group filters together, inclusive
+      container.isotope({ filter: filters.join(',') });
     });
+
+    function addFilter( filter ) {
+      if ( filters.indexOf( filter ) == -1 ) {
+        filters.push( filter );
+      }
+    }
+
+    function removeFilter( filter ) {
+      var index = filters.indexOf( filter);
+      if ( index != -1 ) {
+        filters.splice( index, 1 );
+      }
+    }
   });
