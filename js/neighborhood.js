@@ -23,7 +23,9 @@
       success:function(places){
         console.log('done');
       var markers = new Array();
-      var infoWindow = new google.maps.InfoWindow();
+      var infoWindow = new google.maps.InfoWindow({
+        maxWidth: 300,
+      });
 
       $.each(places, function(i){
         var items = $(this);
