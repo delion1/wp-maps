@@ -80,7 +80,7 @@
         '</div>';
         $('#list #locations').append(contentList);
         markers.push(marker);
-      });
+      }); //end of loop
 
       $('#locations .list').each(function(){
         $('a', this).on('click', function(){
@@ -88,6 +88,57 @@
           google.maps.event.trigger(markers[$(this).attr('data-markerid')], 'click');
         });
       });
+
+
+ //filtering
+    var container = $('#locations');
+    var filters = []
+    jQuery('.cat-menu li a').on( 'click', function(event) {
+      var $target = $( event.currentTarget );
+      $target.toggleClass('is-checked');
+      var isChecked = $target.hasClass('is-checked');
+      var filterValue = $target.attr('data-filter');
+
+      if ( isChecked ) {
+        addFilter( filterValue );
+
+      } else {
+        removeFilter( filterValue );
+      }
+      // filter isotope
+      // group filters together, inclusive
+      container.isotope({ filter: filters.join(',') });
+
+      //filter markers
+      $('#locations .row').each(function(){
+        var div = $(this);
+        if(div.css('display') === 'none'){
+          var markerid = $('a', this).attr('data-markerid');
+          console.log($('a', this).attr('data-markerid'));
+          markers[markerid].setVisible(false);
+        } else{
+          markers[markerid].setVisible(true);
+        }
+        //console.log($('#locations .row').not(':hidden').each(function(){ $('a',this).attr('data-markerid')}));
+      });
+    });
+
+    function addFilter( filter ) {
+      if ( filters.indexOf( filter ) == -1 ) {
+        filters.push( filter );
+      }
+    }
+
+    function removeFilter( filter ) {
+      var index = filters.indexOf( filter);
+      if ( index != -1 ) {
+        filters.splice( index, 1 );
+      }
+    }
+
+
+
+
       },
       error:function(){
         console.log( "error" );
@@ -97,7 +148,7 @@
 
 
     //filtering
-    var container = $('#locations');
+   /* var container = $('#locations');
     var filters = []
     jQuery('.cat-menu li a').on( 'click', function(event) {
 
@@ -108,6 +159,7 @@
 
       if ( isChecked ) {
         addFilter( filterValue );
+        markers[2].setVisible(false);
       } else {
         removeFilter( filterValue );
       }
@@ -127,5 +179,5 @@
       if ( index != -1 ) {
         filters.splice( index, 1 );
       }
-    }
+    }*/
   });
