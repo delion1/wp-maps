@@ -5,6 +5,8 @@
         zoom: 13,
         center: uluru
       });
+      var marker = '';
+      var markers = '';
     //}
 
 
@@ -22,7 +24,7 @@
       },
       success:function(places){
         console.log('done');
-      var markers = new Array();
+      markers = new Array();
       var infoWindow = new google.maps.InfoWindow({
         maxWidth: 300,
       });
@@ -57,7 +59,7 @@
 
         //});
 
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: {lat: lat2, lng: lng2},
           map: map,
           title:title,
@@ -76,7 +78,7 @@
         placeTypes = placeTypes.toString().replace(/,/g, " ");
         var num = i++;
         var contentList = '<div class="row list'+ ' '+ placeTypes +'">'+
-        '<a href="#" data-markerid="'+ num +'"><h2>'+title+'</h2></a>'+
+        '<a href="#" data-markerid="'+ num +'" marker-id="'+marker.id+'"><h2>'+title+'</h2></a>'+
         '<span>'+address+'</span>'+
         '<span>'+phone+'</span>'+
         '</div>';
@@ -116,6 +118,26 @@
       // filter isotope
       // group filters together, inclusive
       container.isotope({ filter: filters.join(',') });
+      console.log(markers);
+
+      setTimeout(function(){
+        $('#locations .row').each(function(){
+          var markerId = $(this).find('a').attr('marker-id');
+            var id = $(this).find('a').attr('data-markerid');
+
+          if($(this).css('display') == 'none'){
+            //var markerId = $(this).find('a').attr('marker-id');
+            //var id = $(this).find('a').attr('data-markerid');
+
+            console.log($(this).find('a').attr('marker-id'));
+            markers[id].setVisible(false);
+            console.log(markers[id]);
+          } else{
+            markers[id].setVisible(true);
+          }
+        });
+      }, 1500);
+      //marker.setVisible(false);
     });
 
     function addFilter( filter ) {
