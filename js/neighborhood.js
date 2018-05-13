@@ -136,7 +136,7 @@
             markers[id].setVisible(true);
           }
         });
-      }, 1000);
+      }, 500);
       //marker.setVisible(false);
     });
 
