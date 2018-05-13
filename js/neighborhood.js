@@ -118,26 +118,20 @@
       // filter isotope
       // group filters together, inclusive
       container.isotope({ filter: filters.join(',') });
-      console.log(markers);
 
+      //Marker pin update
       setTimeout(function(){
         $('#locations .row').each(function(){
-          var markerId = $(this).find('a').attr('marker-id');
-            var id = $(this).find('a').attr('data-markerid');
+          var id = $(this).find('a').attr('data-markerid');
 
           if($(this).css('display') == 'none'){
-            //var markerId = $(this).find('a').attr('marker-id');
-            //var id = $(this).find('a').attr('data-markerid');
-
-            console.log($(this).find('a').attr('marker-id'));
+            //console.log($(this).find('a').attr('marker-id'));
             markers[id].setVisible(false);
-            console.log(markers[id]);
           } else{
             markers[id].setVisible(true);
           }
         });
       }, 500);
-      //marker.setVisible(false);
     });
 
     function addFilter( filter ) {
